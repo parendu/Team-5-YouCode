@@ -1,5 +1,3 @@
-# Team-5-YouCode
-Create application which will provide youtube tutorials.
 Project Title: 
 YouCode
 
@@ -28,4 +26,11 @@ HTML / CSS
 -	History - automatically save all the videos already watched
 -	NewsBox - News related to selected subject	
 
-APIs / Database
+- HTML/CSS - Yuxin
+- API/Database (Search and Display top 6 videos) - Parendu
+- API/Database (Display NewsBox) - Randy
+- API/Database (Display viewed videos and display Save for Later videos) - John
+
+
+
+  
