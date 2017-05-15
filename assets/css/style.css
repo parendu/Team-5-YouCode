@@ -1,0 +1,67 @@
+html, body {
+	font-family: 'Quicksand', sans-serif;
+	color: #666666;
+	height: 100%;
+	margin: 0;
+}
+.jumbotron p {
+	margin-left: 100px;
+	margin-right: 100px;
+}
+.wrapper {
+	min-height: 100%;
+	/* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+	margin-bottom: -50px;
+}
+.footer, .push {
+	height: 40px;
+}
+.youCodeIframes {
+	height: 100%;
+	width: 100%;
+}
+.eachVideoNumber {
+	position: absolute;
+	height: 84%;
+	width: 96%;
+	z-index: 2;
+	color: white;
+	font-size: 20px;
+	background: rgba(54, 25, 25, .5);
+}
+.videoBox {
+	padding-right: 10px;
+}
+.margin-top-40 {
+	margin-top: 40px;
+}
+.margin-top-10 {
+	margin-top: 10px;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+.margin-right-5 {
+	margin-right: 5px;
+}
+.right-5 {
+	width: 10px;
+}
+.push-10 {
+	height: 10px;
+}
+.videosFrame {
+	border-radius: 10px; 
+	padding:30px 30px 20px 30px; 
+	background-color:#eeeeee;
+}
+.videoData {
+	position: absolute;
+  top: 20%; 
+  left:28%;
+}
+
+.playBox {
+	height: 540px;
+}
