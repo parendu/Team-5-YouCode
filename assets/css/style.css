@@ -18,13 +18,13 @@ html, body {
 	height: 40px;
 }
 .youCodeIframes {
-	height: 100%;
-	width: 100%;
+	height: 84px;
+	width: 150px;
 }
 .eachVideoNumber {
 	position: absolute;
-	height: 84%;
-	width: 96%;
+	height: 84px;
+	width: 150px;
 	z-index: 2;
 	color: white;
 	font-size: 20px;
