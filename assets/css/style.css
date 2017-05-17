@@ -79,7 +79,6 @@ img {
 /* end First row inclue left recommended videos and right video players  */
 
 
-
 /* ============================== mainBox animationBox and jumbtron huidden ============================== */
 #mainBox {
 	display: none;
@@ -146,32 +145,29 @@ img {
 
 
 .tortoise {
+	height: 60px;
 	position: absolute;
-	bottom: 100px;
+	bottom: 50px;
 	left: 50% ;
 	text-align: center;
 	animation:  tortoise_walk 1s ease infinite;
-	z-index: 999;
+	z-index: 8;
 }
 
 
 .road {
 	position: absolute;
-	bottom: 190px;
+	bottom: 110px;
 	left: 0px;
 	animation: roaddots 60s both infinite linear;
 }
 
-.road2 {
-	position: absolute;
-	bottom: 190px;
-	left: 0px;
-	animation: roaddots 60s 5s both infinite linear;
-}
+
 
 .flag {
+	height: 30px;
 	position: absolute;
-	bottom: 190px;
+	bottom: 110px;
 	left: 0px;
 	animation: run 40s both infinite linear;
 }
