@@ -4,64 +4,196 @@ html, body {
 	height: 100%;
 	margin: 0;
 }
-.jumbotron p {
-	margin-left: 100px;
-	margin-right: 100px;
-}
+
+
+
 .wrapper {
 	min-height: 100%;
 	/* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-	margin-bottom: -50px;
-}
-.footer, .push {
-	height: 40px;
-}
-.youCodeIframes {
-	height: 84px;
-	width: 150px;
-}
-.eachVideoNumber {
-	position: absolute;
-	height: 84px;
-	width: 150px;
-	z-index: 2;
-	color: white;
-	font-size: 20px;
-	background: rgba(54, 25, 25, .5);
-}
-.videoBox {
-	padding-right: 10px;
-}
-.margin-top-40 {
-	margin-top: 40px;
-}
-.margin-top-10 {
-	margin-top: 10px;
-}
-.margin-top-20 {
-	margin-top: 20px;
-}
-.margin-right-5 {
-	margin-right: 5px;
-}
-.right-5 {
-	width: 10px;
-}
-.push-10 {
-	height: 10px;
-}
-.videosFrame {
-	border-radius: 10px; 
-	padding:30px 30px 20px 30px; 
-	background-color:#eeeeee;
-}
-.videoData {
-	position: absolute;
-  top: 20%; 
-  left:28%;
+	margin-bottom: -40px;
 }
 
-.playBox {
-	height: 540px;
+.push {
+	height: 40px;
 }
+
+.footer {
+	height: 40px;
+	padding-top: 10px
+}
+
+
+.divider {
+	width: 100%;
+	padding: 10px 0px;
+	border-bottom: solid 15px white;
+	border-top: solid 15px white;
+}
+
+.MoreVideos {
+	padding-top: 10px;
+	float: right;
+	padding-right: 15px;
+}
+
+/* =========== First row inclue left recommended videos and right video players =========== */
+
+.tab-pane {
+	border-right: solid 1px lightgray;
+	border-bottom: solid 1px lightgray;
+	border-left: solid 1px lightgray;
+	overflow: auto;
+	padding: 10px;
+}
+
+.primary{
+	color: 	#428bca;
+}
+
+
+/* eset the img fit the col width  */
+.videos_image {
+ width: 100%;
+ height: 100%;
+}
+
+img {
+	max-height: 100%;
+	max-width: 100%
+}
+
+.viewsMeta {
+	color: white;
+	background-color: #428bca;
+	width: auto;
+	padding: 10px 0px 7px 15px;
+}
+/* give borter to each video  */
+.recommendVideos {
+	border: solid 1px lightgray;
+}
+
+.videoTitleHolder {
+	padding: 5px;
+}
+/* end First row inclue left recommended videos and right video players  */
+
+
+
+/* ============================== mainBox animationBox and jumbtron huidden ============================== */
+#mainBox {
+	display: none;
+}
+
+.jumbotron {
+	background: url(../images/bg.jpg) no-repeat center fixed;
+	color: #999999;
+	display: block;
+}
+
+#runGame {
+	display: block;
+}
+
+
+#SMlogo {
+	display: none;
+	height: 40px;
+}
+/* ============================== / mainBox animationBox and jumbtron huidden ============================== */
+
+
+
+/* ============================== video player ============================== */
+
+.player {
+	height: 420px;
+	padding-top: 8px;
+}
+
+.youCodeIframes {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.paperButtons {
+	float: right;
+	padding-right: 20px;
+}
+
+
+/* ============================== / video player ============================== */
+
+
+/* ============================== /papers ============================== */
+
+.paper {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: url(../images/bg.jpg) no-repeat center fixed;
+}
+
+.eachPaper {
+	padding-bottom: 20px;
+}
+
+
+/* ============================== /papers ============================== */
+
+
+/* ============================== animation ============================== */
+
+
+.tortoise {
+	position: absolute;
+	bottom: 100px;
+	left: 50% ;
+	text-align: center;
+	animation:  tortoise_walk 1s ease infinite;
+	z-index: 999;
+}
+
+
+.road {
+	position: absolute;
+	bottom: 190px;
+	left: 0px;
+	animation: roaddots 60s both infinite linear;
+}
+
+.road2 {
+	position: absolute;
+	bottom: 190px;
+	left: 0px;
+	animation: roaddots 60s 5s both infinite linear;
+}
+
+.flag {
+	position: absolute;
+	bottom: 190px;
+	left: 0px;
+	animation: run 40s both infinite linear;
+}
+
+
+@keyframes roaddots{
+	from{ transform: translateX(-1000px) }
+	to{transform: translateX(1000px) }
+}
+
+@keyframes run{
+	from{ transform: translateX(0px) }
+	to{transform: translateX(2000px) }
+}
+
+@keyframes tortoise_walk{
+	0%{ transform: rotate(0deg) }
+	50%{transform: rotate(2deg) }
+	0%{ transform: rotate(0deg) }
+}
+
+
+/* ============================== animation ============================== */
+
+
