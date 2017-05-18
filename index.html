@@ -37,7 +37,7 @@
                         <input type="text" class="form-control" id="customerKeywords" aria-label="keyWords" placeholder="key words, such as header ...">
                         <div class="input-group-btn">
                            <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HTML <span class="caret"></span></button>
-                           <ul class="dropdown-menu" id="codingLanguages">
+                           <ul class="dropdown-menu" id="search-term">
                               <li>Javascript</li>
                               <li>CSS</li>
                               <li>PHP</li>
@@ -51,7 +51,7 @@
                               <li>Bootstrap</li>
                               <li>Ruby</li>
                            </ul>
-                           <button type="button" class="btn btn-primary" id="searchButton"><span class="glyphicon glyphicon-search"></span></button>      
+                           <button type="button" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>      
                         </div>
                         <!-- /btn-group -->
                      </div>
@@ -114,8 +114,8 @@
                   </ul>
                   <div class="tab-content">
                      <!-- =============== Views ============ -->
-                     <div class="tab-pane active" id="views">
-                        <div class="row">
+                     <div class="tab-pane active" id="video-display">
+                        <div class="row" id="video-appear-here">
                            <!-- row include 3 videos -->
                            <!-- ===== first video ====== -->
                            <div class="col-sm-4">
@@ -132,7 +132,7 @@
                                  <!--/ viewsMeta -->
                                  <div class="videoTitleHolder">
                                     <h4 id="view_title_1">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
+                                    <button type="button" class="favButton btn btn-primary btn-sm">Save</button>
                                  </div>
                                  <!-- / title holder-->
                               </div>
@@ -154,7 +154,7 @@
                                  </div>
                                  <!--/ viewsMeta -->
                                  <div class="videoTitleHolder">
-                                    <h4 id="view_title_2">This is the title of first video</h4>
+                                    <h4 >This is the title of first video</h4>
                                     <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
                                  </div>
                                  <!-- / title holder -->
@@ -177,7 +177,7 @@
                                  </div>
                                  <!--/ viewsMeta -->
                                  <div class="videoTitleHolder">
-                                    <h4 id="view_title_3">This is the title of first video</h4>
+                                    <h4 id="video_title">This is the title of first video</h4>
                                     <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
                                  </div>
                                  <!-- / title holder -->
@@ -525,16 +525,17 @@
 
 <script type="text/javascript">
 
-$("#searchButton").on("click", function() {
+$("#search-button").on("click", function() {
    $("#mainBox").css("display", "block");
    $("#runGame").css("display", "none");
    $(".jumbotron").css("display", "none");
    $("#searchBar").css("padding", "40px 0px 40px 0px");
    $("#searchBar").css('background', 'url(assets/images/bg.jpg) no-repeat center fixed');
    $("#SMlogo").css("display", "block");
-})
-   
+})   
 </script>
+
+<script type="text/javascript" src="assets/javascript/video-search.js"></script>
 
 
    </body>
