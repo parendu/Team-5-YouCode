@@ -473,26 +473,15 @@
          <!-- ============== section papers ================= -->
          <section class="paper" style="background-color: #e9e9e9; ">
             <div class="container">
-               <div class="col-md-12">
-                  <div class="eachPaper" id="firstPaper">
+               <div class="col-md-12 articles">
+                  <div class="eachPaper">
                      <h3 id="paper_1_title">This is first paper title</h3>
                      <p id="paper_1_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae odit iste exercitationem praesentium deleniti nostrum laborum rem id nihil tempora. Adipisci ea commodi unde nam placeat cupiditate quasi a ducimus rem consequuntur ex eligendi minima voluptatem assumenda voluptas quidem sit maiores odio velit voluptate</p>
                      <div class="paperButtons">
                      <button type="button" class="btn btn-primary" id="paperButton_1" style="float: right"> Read </button></div>
                   </div>
-                  <div class="eachPaper" id="secondPaper">
-                     <h3 id="paper_2_title">This is second paper title</h3>
-                     <p id="paper_2_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae odit iste exercitationem praesentium deleniti nostrum laborum rem id nihil tempora. Adipisci ea commodi unde nam placeat cupiditate quasi a ducimus rem consequuntur ex eligendi minima voluptatem assumenda voluptas quidem sit maiores odio velit voluptate</p>
-                     <div class="paperButtons">
-                     <button type="button" class="btn btn-primary" id="paperButton_2" style="float: right"> Read </button></div>
-                  </div>
-                  <div class="eachPaper" id="thirdPaper">
-                     <h3 id="paper_3_title">This is third paper title</h3>
-                     <p id="paper_3_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae odit iste exercitationem praesentium deleniti nostrum laborum rem id nihil tempora. Adipisci ea commodi unde nam placeat cupiditate quasi a ducimus rem consequuntur ex eligendi minima voluptatem assumenda voluptas quidem sit maiores odio velit voluptate</p>
-                     <div class="paperButtons">
-                     <button type="button" class="btn btn-primary" id="paperButton_3"> Read </button>
-                     </div><!--paperBottonz-->
-                  </div>
+                  
+                  
                </div>
             </div>
          </section>
@@ -524,6 +513,54 @@
       <!-- end Row 2 -->
 
 <script type="text/javascript">
+
+
+
+
+for (var i = 0; i < response.articles.length; i++) {
+
+            var eachPaper  = $("<div class="eachPaper">");
+            var paperTitle = $("<h3>");
+            paperTitle.text(response.articles[i].title);
+            eachPaper.append(paperTitle);
+
+            var paperBody = $("<p>").text(response.articles[i].discription);
+            eachPaper.append(paperBody);
+
+            var paperReadButton_container = $("<div class='paperButtons'>");
+
+            var paperReadButton = $("<button type='button' class='btn btn-primary'> ");
+
+
+            var link = $("<a>");
+            link.attr("href", response.articles[i].url);
+            link.attr("title", response.articles[i].title);
+            link.attr("target", "_blank");
+
+            link.append(paperReadButton);
+
+            paperReadButton_container.append(link);
+
+            eachPaper.append("paperReadButton_container");
+
+
+                  $(".articles").append(eachPaper);
+
+
+             //create list
+               //var list = $("<li>");
+                  //list.text(response.articles[i].title);
+                   // console.log(list);
+                  //var link = $("<a>");
+                  //link.attr("href", response.articles[i].url);
+                  //link.attr("title", response.articles[i].title);
+                  //link.attr("target", "_blank");
+
+                  //link.append(list);
+                  // $('#results').append(link);
+
+        }; //loop
+
 
 $("#search-button").on("click", function() {
    $("#mainBox").css("display", "block");
