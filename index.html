@@ -1,199 +1,157 @@
+\
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>YouCode</title>
-      <!-- jQuery -->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
-      <!-- bootstrap -->
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <!-- YouCode style sheet -->
-      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-      <!-- google fonts font-family: 'Quicksand', sans-serif; -->
-      <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-   </head>
-   <body>
-      <!-- header -->
-      <div class="wrapper">
-         <!-- ============== intro ================= -->
-         <div class="jumbotron">
+
+<head>
+    <title>YouCode</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <!-- css file reference -->
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <!-- <script src="auth.js"></script> -->
+</head>
+
+<body>
+    <!-- header -->
+    <div class="wrapper">
+        <!-- ============== intro ================= -->
+        <div class="jumbotron">
             <div class="container">
-               <p class="text-center" class="col-lg-8 col-lg-offset-2"><img src="assets/images/logo.png"><br><br>Using <span style="color: purple;">You</span ><span style="color: salmon;">Code</span> to filter the right coding tutorials on YouTube. <br> Do you remember the story <span style="font-style: italic; font-size: 1.1em;">Tortoise and the Hare</span> ? <br> Dare you to be the learning tortoise to win !</p>
+                <p class="text-center" class="col-lg-8 col-lg-offset-2"><img src="assets/images/logo.png">
+                    <br>
+                    <br>Using <span style="color: purple;">You</span ><span style="color: salmon;">Code</span> to filter the right coding tutorials on YouTube.
+                    <br> Do you remember the story <span style="font-style: italic; font-size: 1.1em;">Tortoise and the Hare</span> ?
+                    <br> Dare you to be the learning tortoise to win !</p>
             </div>
             <!-- / container -->
-         </div>
-         <!-- / jumbotron -->
-         <!-- ============== / intro ================= -->
-         <!-- ============== search bar ================= -->
-         <section id="searchBar">
+        </div>
+        <!-- / jumbotron -->
+        <!-- ============== / intro ================= -->
+        <!-- ============== search bar ================= -->
+        <section id="searchBar">
             <div class="container">
-               <div class="row">
-            
-                  <div class="col-sm-6 col-sm-offset-3">
-                  <div ><img  id="SMlogo" src="assets/images/YouCodelogo.png"></div>
-                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" id="customerKeywords" aria-label="keyWords" placeholder="key words, such as header ...">
-                        <div class="input-group-btn">
-                           <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HTML <span class="caret"></span></button>
-                           <ul class="dropdown-menu" id="search-term">
-                              <li>Javascript</li>
-                              <li>CSS</li>
-                              <li>PHP</li>
-                              <li>AJAX</li>
-                              <li>JSON</li>
-                              <li>Java</li>
-                              <li>C</li>
-                              <li>Python</li>
-                              <li>Firebase</li>
-                              <li>Ruby</li>
-                              <li>Bootstrap</li>
-                              <li>Ruby</li>
-                           </ul>
-                           <button type="button" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>      
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div><img id="SMlogo" src="assets/images/YouCodelogo.png"></div>
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control" id="customerKeywords" aria-label="keyWords" placeholder="key words, such as header ...">
+                            <div class="input-group-btn">
+
+                              <select type="button" class="btn btn-default" id="search-term-1" placeholder="select option">
+                                <option>HTML</option>
+                                <option>CSS</option>
+                                <option>JAVA</option>
+                                <option>PHP</option>
+                                <option>C</option>
+                                <option>Python</option>
+                                <option>Firebase</option>
+                                <option>Ruby</option>
+                                <option>Bootstrap</option>
+                                <option>AJAX</option>
+                                <option>JSON</option> 
+                                <option>Angular</option>
+                               </select>
+                                <!--
+                                <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" id="search-term" aria-expanded="false" placeholder="CSS"><span class="caret"></span></button>
+                                <ul class="dropdown-menu" id="search-term_1">
+                                    <li>Javascript</li>
+                                    <li>CSS</li>
+                                    <li>PHP</li>
+                                    <li>AJAX</li>
+                                    <li>JSON</li>
+                                    <li>Java</li>
+                                    <li>C</li>
+                                    <li>Python</li>
+                                    <li>Firebase</li>
+                                    <li>Ruby</li>
+                                    <li>Bootstrap</li>
+                                    <li>Ruby</li>
+                                </ul>-->
+                                <button type="button" class="btn btn-primary" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <!-- /btn-group -->
                         </div>
-                        <!-- /btn-group -->
-                     </div>
-                     <!-- /input-group -->
-                  </div>
-                  <!-- /.col-lg-6 -->
-               </div>
-               <!-- / row -->
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- / row -->
             </div>
             <!-- / container-->
-         </section>
-         <!-- /.section-->
-         <!-- ============== / search bar================= -->
-         <!-- ============== divider ================= -->
-
-<div id="mainBox">
-<!-- ============== mainBox ================= -->
-
-
-         <div class="divider">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12">
-                     
-                  </div>
-                  <!-- / col-->
-               </div>
-               <!-- / row-->
-            </div>
-            <!-- / cotainer-->
-         </div>
-         <!-- ============== / divider ================= -->
-         <!--  First row include left recommended videos and right video player  -->
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <!-- left col -->
-                  <ul class="nav nav-tabs">
-                     <li class="active">
-                        <a href="#views" data-toggle="tab">
-                           <h5 class="primary">  Most Views  </h5>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#likes" data-toggle="tab">
-                           <h5>  Most Likes  </h5>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#library" data-toggle="tab">
-                           <h5>  You Saved  </h5>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#history" data-toggle="tab">
-                           <h5>
-                           You watched  </h5>
-                        </a>
-                     </li>
-                  </ul>
-                  <div class="tab-content">
-                     <!-- =============== Views ============ -->
-                     <div class="tab-pane active" id="video-display">
-                        <div class="row" id="video-appear-here">
-                           <!-- row include 3 videos -->
-                           <!-- ===== first video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="views_image_1">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="viewsNumber_1">
-                                    <p id="viewsNumber_1"><span class="glyphicon glyphicon-eye-open" style="font-size: 24px;" ></span> &nbsp30000 views</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 id="view_title_1">This is the title of first video</h4>
-                                    <button type="button" class="favButton btn btn-primary btn-sm">Save</button>
-                                 </div>
-                                 <!-- / title holder-->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ first col-md-4 -->
-                           <!-- ===== / first video ====== -->
-                           <!-- ===== second video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="views_image_2">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="viewsNumber_2">
-                                    <p id="viewsNumber_2"><span class="glyphicon glyphicon-eye-open" style="font-size: 24px;" ></span> &nbsp30000 views</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 >This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
-                                 </div>
-                                 <!-- / title holder -->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ 2nd col-md-4 -->
-                           <!-- ===== / second video ====== -->
-                           <!-- ===== 3rd video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="views_image_3">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="viewsNumber_3">
-                                    <p id="viewsNumber_3"><span class="glyphicon glyphicon-eye-open" style="font-size: 24px;" ></span> &nbsp30000 views</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 id="video_title">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
-                                 </div>
-                                 <!-- / title holder -->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ 3rd col-md-4 -->
-                           <!-- ===== / 3rd video ====== -->
+        </section>
+        <!-- /.section-->
+        <!-- ============== / search bar================= -->
+        <!-- ============== divider ================= -->
+        <div id="mainBox">
+            <!-- ============== mainBox ================= -->
+            <div class="divider">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
                         </div>
+                        <!-- / col-->
+                    </div>
+                    <!-- / row-->
+                </div>
+                <!-- / cotainer-->
+            </div>
+            <!-- ============== / divider ================= -->
+            <!--  First row include left recommended videos and right video player  -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- left col -->
+                        <ul class="nav nav-tabs" id="rowTab">
+                            <li class="active">
+                                <a href="#views" data-toggle="tab">
+                                    <h5 class="primary">  Most Views  </h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#likes" data-toggle="tab">
+                                    <h5>  Most Likes  </h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#library" data-toggle="tab">
+                                    <h5>  You Saved  </h5>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#history" data-toggle="tab">
+                                    <h5> You watched  </h5>
+                                </a>
+                            </li>
+                        </ul>
+                <div class="tab-content">
+                     <!-- =============== Views ============ -->
+                     <div class="tab-pane active" id="views">
+                          <div class="row" id="video-appear-here" style="overflow-x: scroll; height: 300px; sc">
+                           <!-- row include 3 videos -->
+                          
+                           
+                         </div>
                         <!-- / row include 3 videos -->
                         <div class="row text-center MoreVideos">
                            <!-- load more videos button row-->
                            <button type="button" class="btn btn-primary" id="MoreViewsVideos"> Load More Videos</button>    
                         </div>
                         <!-- / load more videos button row-->
-                     </div>
+                     
+                    </div>
                      <!-- ========= /tab views ======= -->
                      <!-- =============== Most likes ============ -->
                      <div class="tab-pane" id="likes">
@@ -278,77 +236,10 @@
                      <!-- =============== / likes============ -->
                      <!-- =============== library (saved)============ -->
                      <div class="tab-pane " id="library">
-                        <div class="row">
+                        <div class="row" id="saved-appear-here">
                            <!-- row include 3 videos -->
                            <!-- ===== first video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="library_image_1">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="libraryNumber_1">
-                                    <p id="libraryNumber_1"><span class="glyphicon glyphicon-thumbs-up" style="font-size: 24px;" ></span> &nbsp30000 likes</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 id="library_title_1">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Delete</button>
-                                 </div>
-                                 <!-- / title holder-->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ first col-md-4 -->
-                           <!-- ===== / first video ====== -->
-                           <!-- ===== second video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="library_image" id="views_image_2">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="libraryNumber_2">
-                                    <p id="libraryNumber_2"><span class="glyphicon glyphicon-eye-open" style="font-size: 24px;" ></span> &nbsp30000 views</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 id="library_title_2">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Delete</button>
-                                 </div>
-                                 <!-- / title holder -->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ 2nd col-md-4 -->
-                           <!-- ===== / second video ====== -->
-                           <!-- ===== 3rd video ====== -->
-                           <div class="col-sm-4">
-                              <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="library_image_3">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->
-                                 <!-- views number -->
-                                 <div class="viewsMeta" id="viewsNumber_3">
-                                    <p id="libraryNumber_3"><span class="glyphicon glyphicon-eye-open" style="font-size: 24px;" ></span> &nbsp30000 views</p>
-                                 </div>
-                                 <!--/ viewsMeta -->
-                                 <div class="videoTitleHolder">
-                                    <h4 id="library_title_2">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Delete</button>
-                                 </div>
-                                 <!-- / title holder -->
-                              </div>
-                              <!-- /signle Videos container recommendVideos-->
-                           </div>
-                           <!--/ 3rd col-md-4 -->
-                           <!-- ===== / 3rd video ====== -->
+                           
                         </div>
                         <!-- / row include 3 videos -->
                         <div class="row text-center MoreVideos">
@@ -444,136 +335,75 @@
                   <!-- /tab-content -->
                </div>
                <!-- / left col 6 -->
-               <!-- =======Video Player======= -->
-               <div class="col-md-6">
-                  <div class="player">
-                     <iframe class="youCodeIframes" src="https://www.youtube.com/embed/Ukg_U3CnJWI?ecver=2" frameborder="0"
-                        style="position: relative; height: 100%; width: 100%;" allowfullscreen></iframe>
-                  </div>
-               </div>
-               <!-- =======/ Video Player======= -->
+                        <!-- =======Video Player======= -->
+                        <div class="col-md-6" id='video-player'>
+                            <!-- videos Player will display here -->
+                            <div class="player">
+                                <iframe title="YouTube video player" class="youCodeIframes" type="text/html" target="_parent" frameborder="0" style="position: relative; height: 100%; width: 100%;" frameborder="0" allowFullScreen></iframe>
+                            </div>
+                        </div>
+                        <!-- container -->
+                    </div>
+                        <!-- row -->
+                </div>
+                    <!-- ============== divider ================= -->
+                    <div class="divider">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                </div>
+                                <!-- / col-->
+                            </div>
+                            <!-- / row-->
+                        </div>
+                        <!-- / cotainer-->
+                    </div>
+                    <!-- ============== / divider ================= -->
+                    <section class="paper" style="background-color: #e9e9e9; ">
+                        <div class="container">
+                            <div class="col-md-12 articles">
+                                <!-- articles will display here -->
+                            </div>
+                        </div>
+                   <!-- </div> -->
+                     </section>
+        </div>
+            <!-- ============== /mainBox ================= -->
+            <!--  <div class="row">
+            
+                <div class="col-sm-6 main" id='favorite-video'> -->
+            <!-- videos Player will display here -->
+            <!-- <div id="favorite-appear-here"> -->
+            <!-- <embed width="420" height="315">   -->
+            <!-- </div>
+                </div>
+            </div> -->
+            <!-- ============== animation ================= -->
+            <section id="runGame">
+                <div class="row">
+                    <img class="tortoise" src="assets/images/tortoise.png">
+                    <img class="road" src="assets/images/road.png">
+                    <img class="flag" src="assets/images/flag.png">
+                </div>
+            </section>
+            <!-- / runGame-->
+            <!-- ============== animation ================= -->
+            <!-- ============== child div in wrapper to keep the footer at the bottom================= -->
+            <div class="push"></div>
+            <!-- ============== / child div in wrapper to keep the footer at the bottom================= -->
+        </div>
+        <!-- end wrapper -->
+        <div class="row footer col-sm-10 col-sm-offset-1">
+            <div>
+                &#169 copyright
+                <span class="pull-right">About YouCode Team | Contact Us</span>
             </div>
-            <!-- /row -->
-         </div>
-         <!-- /container -->
-         <!-- ============== / First row  ================= -->
-         <!-- ============== divider ================= -->
-         <div class="divider">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12">
-                  </div>
-                  <!-- / col-->
-               </div>
-               <!-- / row-->
-            </div>
-            <!-- / cotainer-->
-         </div>
-         <!-- ============== / divider ================= -->
-         <!-- ============== section papers ================= -->
-         <section class="paper" style="background-color: #e9e9e9; ">
-            <div class="container">
-               <div class="col-md-12 articles">
-                  <div class="eachPaper">
-                     <h3 id="paper_1_title">This is first paper title</h3>
-                     <p id="paper_1_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae odit iste exercitationem praesentium deleniti nostrum laborum rem id nihil tempora. Adipisci ea commodi unde nam placeat cupiditate quasi a ducimus rem consequuntur ex eligendi minima voluptatem assumenda voluptas quidem sit maiores odio velit voluptate</p>
-                     <div class="paperButtons">
-                     <button type="button" class="btn btn-primary" id="paperButton_1" style="float: right"> Read </button></div>
-                  </div>
-                  
-                  
-               </div>
-            </div>
-         </section>
+        </div>
+        <!-- end Row 2 -->
+        <script src="assets/javascript/video-search.js"></script>
+        <script src="assets/javascript/article-search.js"></script>
+        <script src="assets/javascript/watch-later.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+</body>
 
-
-</div><!-- ============== /mainBox ================= -->
-
-         <!-- ============== animation ================= -->
-         <section id="runGame">
-            <div class="row">
-               <img class="tortoise" src="assets/images/tortoise.png">
-              <img class="road"  src="assets/images/road.png">
-               <img class="flag"  src="assets/images/flag.png">
-            </div>
-         </section>
-         <!-- / runGame-->
-         <!-- ============== animation ================= -->
-         <!-- ============== child div in wrapper to keep the footer at the bottom================= -->
-         <div class="push"></div>
-         <!-- ============== / child div in wrapper to keep the footer at the bottom================= -->
-      </div>
-      <!-- end wrapper -->
-      <div class="row footer col-sm-10 col-sm-offset-1">
-         <div>
-            &#169 copyright
-            <span class="pull-right">About YouCode Team | Contact Us</span>
-         </div>
-      </div>
-      <!-- end Row 2 -->
-
-<script type="text/javascript">
-
-
-
-
-for (var i = 0; i < response.articles.length; i++) {
-
-            var eachPaper  = $("<div class="eachPaper">");
-            var paperTitle = $("<h3>");
-            paperTitle.text(response.articles[i].title);
-            eachPaper.append(paperTitle);
-
-            var paperBody = $("<p>").text(response.articles[i].discription);
-            eachPaper.append(paperBody);
-
-            var paperReadButton_container = $("<div class='paperButtons'>");
-
-            var paperReadButton = $("<button type='button' class='btn btn-primary'> ");
-
-
-            var link = $("<a>");
-            link.attr("href", response.articles[i].url);
-            link.attr("title", response.articles[i].title);
-            link.attr("target", "_blank");
-
-            link.append(paperReadButton);
-
-            paperReadButton_container.append(link);
-
-            eachPaper.append("paperReadButton_container");
-
-
-                  $(".articles").append(eachPaper);
-
-
-             //create list
-               //var list = $("<li>");
-                  //list.text(response.articles[i].title);
-                   // console.log(list);
-                  //var link = $("<a>");
-                  //link.attr("href", response.articles[i].url);
-                  //link.attr("title", response.articles[i].title);
-                  //link.attr("target", "_blank");
-
-                  //link.append(list);
-                  // $('#results').append(link);
-
-        }; //loop
-
-
-$("#search-button").on("click", function() {
-   $("#mainBox").css("display", "block");
-   $("#runGame").css("display", "none");
-   $(".jumbotron").css("display", "none");
-   $("#searchBar").css("padding", "40px 0px 40px 0px");
-   $("#searchBar").css('background', 'url(assets/images/bg.jpg) no-repeat center fixed');
-   $("#SMlogo").css("display", "block");
-})   
-</script>
-
-<script type="text/javascript" src="assets/javascript/video-search.js"></script>
-
-
-   </body>
 </html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouCode</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <!-- css file reference -->
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- <script src="auth.js"></script> -->
+</head>
+
+
+
+
+    <body>
+
+                     
+<!-- jQuery -->
+
+
+<!-- jQuery Mobile -->
+
+<!-- page1 -->
+<div data-role="page" id="page1" data-title="page1">
+    <!-- Header -->
+    <div data-role="header" data-position="fixed">
+        <h1>Page 1</h1>
+    </div>
+
+    <div class="input-group-btn">
+                        <button type="button" id="search-button" class="btn btn-danger">Search</button>
+    </div>
+    <!-- /Header -->
+    <!-- Content -->
+    <div role="main" class="ui-content">
+        <label for="search">Search Input:</label>
+        <input name="search" id="search" value="" placeholder="palceholder" type="search">
+        <!-- <ul data-role="listview" id="results" data-inset="true"> -->
+        <!-- </ul> -->
+
+
+    </div>
+
+     <div class="row">
+        <div class="col-sm-6" id='articles-display'>
+                    <!-- videos will display here -->
+                <div id="article-header">
+
+                </div>
+
+                <div id="Article-appear-here">
+                         
+                    <ul data-role="listview" id="results" data-inset="true">
+                     </ul>
+                </div>
+        </div> 
+                
+        <div class="col-sm-6" id='Favorite-video'> 
+                    <!-- videos Player will display here -->
+                    <div id="Favorite-appear-here">
+
+
+                      <!-- <embed width="420" height="315">   -->
+                     
+        </div>
+    </div>
+    <!-- /Content -->
+</div>
+
+<script>
+<!-- /page1 -->
+ //capture search-term text box when user click search-button
+$(document).ready(function(){
+ $("#search-button").on("click", function(event) {
+     event.preventDefault();
+
+     var searchTerm = $('#search-term').val();
+     console.log(searchTerm);
+     // The Base URL
+     var queryUrl = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=2d7535a7fe9c4f85a3ecff0e4993a567";
+
+     // putting the url togehter and append &callback=?
+     var url = queryUrl;
+     console.log(url);
+
+     // Call The API for a JSON
+     $.getJSON(url, function() {
+         console.log("success");
+     }).done(function(response) {
+         console.log("second success");
+
+         console.log(response.articles);
+
+         //var results = response.articles;
+
+         console.log(response.articles);
+
+         // create a var for the results and append a header
+         var results = '<strong>Articles:</strong>';
+         
+         var p = "<h3>Articles:</h3>";
+         $("#article-header").html(p);
+                  
+
+         //create news articles list creating li attribute
+         for (var i = 0; i < response.articles.length; i++) {
+
+
+                  var list = $("<li>");
+                  list.text(response.articles[i].title);
+                    console.log(list);
+                  var link = $("<a>");
+                  link.attr("href", response.articles[i].url);
+                  //link.attr("title", response.articles[i].title);
+                  link.attr("target", "_blank");
+
+                 
+               
+
+                 link.append(list);
+
+                   $('#results').append(link);
+
+         }; //loop
+
+          //add border
+          $('#articles-display').addClass('bordered');
+        //    $('#articles-display').append(results);
+
+         // }).fail(function() {
+         //   console.log("error");
+         //  }).always(function() {
+         //  console.log("always");
+         //  });
+
+     }); //response
+   
+
+ }); //click
+});  //document ready
+
+
+
+</script>		<!-- <script src="./temp-project-1/assets/javascript/article-search.js"></script> -->
+        
+    </body>
+
+</html>

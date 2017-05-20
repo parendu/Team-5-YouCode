@@ -1,0 +1,170 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <!-- css file reference -->
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- <script src="auth.js"></script> -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3><strong>Existing User - Login:</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email-id" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd-id" placeholder="Enter password" name="pwd">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember"> Remember me</label>
+                    </div>
+                    <button type="submit" id='login' class="btn btn-default">Login</button>
+                </form>
+                <div class="profile">
+                <button type="profile" id='profile' class="btn btn-default">Profile</button>
+                    <p id="profile-info"></p>
+                </div>
+
+                <button type="sign-out" id='sign-out' class="btn btn-default">Sign-out</button>
+            </div>
+            <div class="col-md-4">
+                <h3><strong>New User - Sign up:</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email-new" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd-new" placeholder="Enter password" name="pwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Repeat Password:</label>
+                        <input type="password" class="form-control" id="pwd-new" placeholder="Repeat password" name="pwd-repeat">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember"> Remember me</label>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--     <script>
+    var config = {
+        apiKey: "AIzaSyDPuoLjJiafrM6GYOf-sllWt92WA_0OlF0",
+        authDomain: "youcode-f343d.firebaseapp.com",
+        databaseURL: "https://youcode-f343d.firebaseio.com",
+        projectId: "youcode-f343d",
+        storageBucket: "youcode-f343d.appspot.com",
+        messagingSenderId: "261028005312"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+
+    //sign-up new user
+    $("#submit").on("click", function(event) {
+        // Prevent form from submitting
+        event.preventDefault();
+
+        // //captured data from Add Train form
+        var email = $("#email-id").val();
+        var password = $("#pwd-id").val();
+        console.log(email);
+        console.log("hello" + email + "|" + password);
+
+        //add data to firebase database
+        var newUser = {
+            email: email,
+            password: password
+
+        };
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+    }); //onclick button
+
+    //existing user login
+    $("#login").on("click", function(event) {
+        // Prevent form from submitting
+        event.preventDefault();
+
+        // //captured data from Add Train form
+        var email = $("#email-id").val();
+        var password = $("#pwd-id").val();
+        console.log(email);
+        console.log("hello" + email + "|" + password);
+
+        //add data to firebase database
+        var newUser = {
+            email: email,
+            password: password
+
+        };
+
+        //get user provider data
+        //
+        var user = firebase.auth().currentUser;
+
+        if (user != null) {
+            user.providerData.forEach(function(profile) {
+                console.log("Sign-in provider: " + profile.providerId);
+                console.log("  Provider-specific UID: " + profile.uid);
+                console.log("  Name: " + profile.displayName);
+                console.log("  Email: " + profile.email);
+                console.log("  Photo URL: " + profile.photoURL);
+            });
+        }
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+    });
+
+
+    //sign-out 
+    $("#sign-out").on("click", function(event) {
+        // Prevent form from submitting
+        event.preventDefault();
+
+        firebase.auth().signOut().then(function() {
+            console.log("successfully signpout");
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+        });
+
+    });
+    </script> -->
+    
+    <script src="signup-new.js"></script>
+</body>
+
+</html>

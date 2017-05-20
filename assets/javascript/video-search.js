@@ -10,60 +10,22 @@
  };
 
  $(document).ready(function() {
-      
-     //capture search-term text box when user click search-button
-     $("#search-button").on("click", function(event) {
-         event.preventDefault();
-         //hide company name 
-         $("#company-name").hide();
-         //remove src from iframe
-         
-           $(".youtube-player").removeAttr("src");
-          $(".youtube-player").empty();
-          $("#video-display").removeClass("bordered");
-          $("#video-appear-here").empty();
-           // player.destroy():Void
+    var results;
+    var loadMoreCount = 0;
 
-         console.log("hello");
-         var searchTerm = $('#search-term').val();
-         console.log(searchTerm);
-         // search(searchTerm);
-
-         var customerKeywords = $('#customerKeywords').val();
-         console.log(customerKeywords);
-
-         //prepare request
-         var request = gapi.client.youtube.search.list({
-             part: 'snippet',
-             q: searchTerm + customerKeywords + " tutorial",
-             maxResults: 8,
-             order: "viewCount",
-             type: "video"
-
-         });
-
-
-         //execute request
-         request.execute(function(response) {
-             console.log(response);
-
-             var results = response.items;
-             console.log(results);
-
-             for (var i = 0; i < results.length; i++) {
+    //functionality of load more
+    $("#MoreViewsVideos").on("click",function(){
+        loadMoreCount++;
+        for (var i = 0+3*loadMoreCount; i < 3+3*loadMoreCount; i++) {
                  console.log(results[i]);
 
                  //get the data videoId, imageUrl and videoTitle from results
                  var videoId = results[i].id.videoId;
                  // console.log(videoId);
-                 var imageUrl = results[i].snippet.thumbnails.default.url;
+                 var imageUrl = results[i].snippet.thumbnails.medium.url;
                  console.log(imageUrl);
                  var videoTitleFull = results[i].snippet.title;
                  //console.log(videoTitleFull);
-
-                 //var textDiv = $("<div class='middle text'>" + videoTitle + "</div>");
-
-
 
                  //trim video title so it display properly
 
@@ -74,76 +36,24 @@
 
                      var videoTitle = videoTitleFull;
                  }
-                 var p = $("<p>").text(videoTitle);
+                // var p = $("<p>").text(videoTitle);
 
                  console.log(videoTitleFull);
                  console.log(videoTitle);
 
-
-                 //border the video-display container
-                 // $('#video-display').addClass('bordered');
-
                  //create class image for each video        
-                 var videoDiv = $("<div class = 'col-sm-4 recommendVideos'>");
+                 var videoDiv = $("<div class = 'col-sm-4 item'>");
 
-
-
-                 /* <div class="videoTitleHolder">
-                                    <h4 id="view_title_3">This is the title of first video</h4>
-                                    <button type="button" class="addLibrary btn btn-primary btn-sm">Save</button>
-                                 </div>*/
-
-
-                var videoTitleHolder = $("<div class='videoTitleHolder'>");
-                var video_title = $("<h4>");
-                video_title.addClass("video_title");
-                //var video_title = $("<h4 class='video_title' + videoTitle");
-
-                //create favorite(save button) buttton
-                var favButton = $("<button type='button' id='favorite' value='click'>");
-                favButton.addClass("btn btn-primary btn-sm favorite-button");             
-                favButton.text("Save");
-                favButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
                  
-                 // var favButton = $("<button type='button' id='favorite' value='click' margin-bottom='10px' class='btn btn-default btn-sm favorite-button'>");
-
-                /* var addSpan = $("<span>");
-                 addSpan.addClass('glyphicon glyphicon-star')
-                 addSpan.attr("aria-hidden", 'true'); */
+                 var videoThumb = $("<div class='recommendVideos'>");
                  
+                 //add videoThumb to videoDiv
+                 videoDiv.append(videoThumb);
+                 
+                 var video_image = $("<div class='video_image'>");
 
-                 //create play buttton
-
-                 /*
-                 var playButton = $("<button type='button'  name=" + videoId + "value='click' margin-bottom='10px' class='btn btn-default btn-sm play-button'>");
-                 var playSpan = $("<span>");
-                 playSpan.addClass('glyphicon glyphicon-play')
-                 playSpan.attr("aria-hidden", 'true');
-
-                 //adding href to span
-
-                 playButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId); */
-
-                 /*    <!-- image -->
-                              <div class="recommendVideos">
-                                 <div class="videos_image" id="views_image_1">
-                                    <img src="assets/images/videoSM.jpg" alt="Most Views on YouTube" />
-                                 </div>
-                                 <!--/ viewsImage_1 -->  */
-
-
-                var videoThumb = $ ("<div class='recommendVideos'>")  ;
-                           
-
-                var imgBox = $ ("<div class='videos_image'>")  ;
-                 //create image element
-                 //var videoThumb = $("<div class='thumbnail'>");
                  var videoImage = $("<img>");
-
-                 
-
-                 //add class to image
-
+                //add class to image
                  videoImage.addClass('video-image');
 
                  //set src image
@@ -152,73 +62,172 @@
                  videoImage.attr("data-videoId", videoId);
                  videoImage.attr("value", "click");
                  videoImage.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+                 
+                 //add videoImage to video_image
+                 video_image.append(videoImage);
+                 //add video_image to videoThumb
+                 videoThumb.append(video_image);
 
-                 // videoImage.attr("href", 'https://www.youtube.com/watch?v='+videoId);
-                 //videoImage.append("<a href=https://www.youtube.com/watch?v="+ videoId + " target='video-play'");
+                 //create videoTitleHolder to hold title
+                 var videoTitleHolder = $("<div class='videoTitleHolder'>");
+                 var title = $("<h6>")
+                 title.attr("id", 'view_title_1');
+                 title.text(videoTitle);
+                 
+                 // create viewMeta data
+                 var viewsMeta = $("<div class='viewsMeta'>");
+                 viewsMeta.attr("id", "viewsNumber");
+                 videoThumb.append(viewsMeta);
 
+               //create favorite buttton
+                 var saveButton = $("<button type='button' class='favorite-button btn btn-primary btn-sm'>");
+                 saveButton.attr("id", "favorite");
+                 saveButton.text("Save")        
+                 saveButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+                 saveButton.attr("data-videoId", videoId);
+                 saveButton.attr("data-src", imageUrl);
+                //create append title, saveButton to videoTitleHolder
+                //apeend videoTitleHolder to videoThumb
+                 videoTitleHolder.append(title);
+                 videoTitleHolder.append(saveButton);
+                 videoThumb.append(videoTitleHolder);
 
-                 //appen img to imgBox
-                 videoImage.append(imgBox);
+                 $("#video-appear-here").prepend(videoDiv);
+    }
+})
 
+      
+     //capture search-term text box when user click search-button
+     $("#search-button").on("click", function(event) {
+         event.preventDefault();
+        
+         
+           $(".youtube-player").removeAttr("src");
+          $(".youtube-player").empty();
+         
+          $("#video-appear-here").empty();
+          // player.destroy();
 
-                 //prepend  video image to videoDiv
+         console.log("hello");
+         var searchTerm = $('#search-term-1 option:selected').val();
+         var customerKeyword = $('#customerKeywords').val();
+         console.log(searchTerm);
+         console.log(customerKeyword);
 
-                 videoThumb.append(videoImage);
-                 videoThumb.append(video_title);
-                 video_title.append(p);
-                 videoThumb.append(favButton);
+         //prepare request
+         var request = gapi.client.youtube.search.list({
+             part: 'snippet',
+             q: customerKeyword + " " + searchTerm,
+             maxResults: 50,
+             order: "viewCount",
+             type: "video"
 
+         });
 
-                 //favButton.append(addSpan);
+             
+         //execute request
+         request.execute(function(response) {
+             console.log(response);
 
-                 //playButton.append(playA);
-                 //playButton.append(playSpan);
+             results = response.items;
+            // console.log(results);
 
+             for (var i = 0; i < 3; i++) {
+                 console.log(results[i]);
+
+                 //get the data videoId, imageUrl and videoTitle from results
+                 var videoId = results[i].id.videoId;
+                 // console.log(videoId);
+                 var imageUrl = results[i].snippet.thumbnails.medium.url;
+                 console.log(imageUrl);
+                 var videoTitleFull = results[i].snippet.title;
+                 //console.log(videoTitleFull);
+
+                 //trim video title so it display properly
+
+                 if (videoTitleFull.length > 40) {
+                     var videoTitle = (videoTitleFull.slice(0, 40) + "...");
+
+                 } else {
+
+                     var videoTitle = videoTitleFull;
+                 }
+                // var p = $("<p>").text(videoTitle);
+
+                 console.log(videoTitleFull);
+                 console.log(videoTitle);
+
+                 //create class image for each video        
+                 var videoDiv = $("<div class = 'col-sm-4 item'>");
 
                  
-                 //videoThumb.prepend(playButton);
+                 var videoThumb = $("<div class='recommendVideos'>");
                  
-                 videoDiv.prepend(videoThumb);
+                 //add videoThumb to videoDiv
+                 videoDiv.append(videoThumb);
+                 
+                 var video_image = $("<div class='video_image'>");
 
-                 //  mouseover display full title
-                 // $( ".thumbnail" )
-                 //      .mouseover(function() {
-                 //    $( this ).find( "p" ).text(videoTitleFull);
-                 //  })
+                 var videoImage = $("<img>");
+                //add class to image
+                 videoImage.addClass('video-image');
+
+                 //set src image
+                 //set data-videoid
+                 videoImage.attr("src", imageUrl);
+                 videoImage.attr("data-videoId", videoId);
+                 videoImage.attr("value", "click");
+                 videoImage.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+                 
+                 //add videoImage to video_image
+                 video_image.append(videoImage);
+                 //add video_image to videoThumb
+                 videoThumb.append(video_image);
+
+                 //create videoTitleHolder to hold title
+                 var videoTitleHolder = $("<div class='videoTitleHolder'>");
+                 var title = $("<h6>")
+                 title.attr("id", 'view_title_1');
+                 title.text(videoTitle);
+                 
+                 // create viewMeta data
+                 var viewsMeta = $("<div class='viewsMeta'>");
+                 viewsMeta.attr("id", "viewsNumber");
+                 videoThumb.append(viewsMeta);
+
+               //create favorite buttton
+                 var saveButton = $("<button type='button' class='favorite-button btn btn-primary btn-sm'>");
+                 saveButton.attr("id", "favorite");
+                 saveButton.text("Save")        
+                 saveButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+                 saveButton.attr("data-videoId", videoId);
+                 saveButton.attr("data-src", imageUrl);
+                //create append title, saveButton to videoTitleHolder
+                //apeend videoTitleHolder to videoThumb
+                 videoTitleHolder.append(title);
+                 videoTitleHolder.append(saveButton);
+                 videoThumb.append(videoTitleHolder);
 
                  $("#video-appear-here").prepend(videoDiv);
 
              }; //for loop
 
-             // equalHeight($(".thumbnail")); 
-
+             
          }); //response
+
+            //hide rungame, jumbotron and move search box
+            $("#mainBox").css("display", "block");
+           $("#runGame").css("display", "none");
+           $(".jumbotron").css("display", "none");
+           $("#searchBar").css("padding", "40px 0px 40px 0px");
+           $("#searchBar").css('background', 'url(assets/images/bg.jpg) no-repeat center fixed');
+           $("#SMlogo").css("display", "block");
+
 
 
 
      }); //search button
-     // function equalHeight(group) {    
-     //  var tallest = 0;    
-     //  group.each(function() {       
-     //      var thisHeight = $(this).height();       
-     //      if(thisHeight > tallest) {          
-     //          tallest = thisHeight;       
-     //      }    
-     //  });    
-     //  group.each(function() { $(this).height(tallest); });
-     //  } 
-
-     //function to start video, click on play button
-
-
-     $(document).on('click', '.play-button', function(e) {
-         console.log("clicked")
-         e.preventDefault();
-         var href = $(this).attr('data-href');
-         console.log("src: " + href);
-         // maybe use an ID instead
-         $('iframe').attr('src', href);
-     });
+    
      //start video, click on image
 
      $(document).on('click', '.video-image', function(e) {
@@ -230,31 +239,19 @@
          $('iframe').attr('src', href);
      });
 
-/// SCROLLING
-/// 
-
- // Add smooth scrolling to all links
-  $("favorite-video").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-
-
+     //displaying correct content on tabs navigation
+     
+     // tab
+            //    $(document).ready(function(){         
+            //     if (location.hash) {
+            //         $("a[href='" + location.hash + "']").tab("show");
+            //     }
+            //     $(document.body).on("click", "a[data-toggle]", function(event) {
+            //         location.hash = this.getAttribute("href");
+            //     });
+            //  });
+            // $(window).on("popstate", function() {
+            //     var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+            //     $("a[href='" + anchor + "']").tab("show");
+            // });
  }); //document.ready

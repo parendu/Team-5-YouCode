@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouCode</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <!-- css file reference -->
+    <script type="text/javascript"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- <script src="auth.js"></script> -->
+</head>
+
+<body>
+    </head>
+
+    <body>
+<div class="container">
+<div class="row">
+<div class="col-sm-3 item" margin-bottom="10px">
+    <div class="thumbnail">
+
+        <button type="button" name="4oSCuEtxRK8value"margin-bottom="10px" class="btn btn-default btn-sm play-button" data-href="https://www.youtube.com/embed/4oSCuEtxRK8"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+
+        <button type="button" data-videoId="4oSCuEtxRK8value" id="favorite" margin-bottom="10px" class="btn btn-default btn-sm favorite-button" data-href="https://www.youtube.com/embed/4oSCuEtxRK8"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+        <img class="video-image" src="https://i.ytimg.com/vi/4oSCuEtxRK8/default.jpg" data-videoId="4oSCuEtxRK8" value="click" data-href="https://www.youtube.com/embed/4oSCuEtxRK8">
+        <p>PHP Tutorials: Register &amp; Login: User lo...</p>
+    </div>
+</div>
+</div>
+<div class="row">
+                <div class="col-sm-6" id='articles-display'>
+                    <!-- videos will display here -->
+                   <div id="Article-appear-here">
+                     <ul data-role="listview" id="results" data-inset="true">
+                     </ul>
+                    </div>
+                </div> 
+                
+                <div class="col-sm-6" id='favorite-video'> 
+                    <!-- videos Player will display here -->
+                    <div id="favorite-appear-here">
+
+
+                      <!-- <embed width="420" height="315">   -->
+                     
+                    </div>
+                </div>
+        </div>
+
+</div>
+
+<script>
+
+     //capture search-term text box when user click favorite-button
+         $(document).on('click', '.favorite-button', function(e) {
+         console.log("clicked")
+         e.preventDefault();
+                            
+          //get the data videoId, imageUrl and videoTitle from results
+
+             var videoId = $(this).attr("data-videoId");
+             // var videoId = $("data-videoId").val()
+              console.log(videoId);
+              var imageUrl = $(this).siblings('img').attr("src");
+             // var videoId = $("data-videoId").val()
+              console.log(imageUrl);
+              var p = $(this).siblings('p');
+              console.log(p);
+             
+             //border the video-display container
+                 $('#favorite-video').addClass('bordered');
+
+                 //create class image for each video        
+                 var favDiv = $("<div class = 'col-sm-3 item' margin-bottom='10px'>");
+
+                 //create favorite buttton
+                 var deleteButton = $("<button type='button' id=" + videoId + "value='click' margin-bottom='10px' class='btn btn-default btn-sm delete-button'>");
+
+                 var addSpan = $("<span>");
+                 addSpan.addClass('glyphicon glyphicon-remove')
+                 addSpan.attr("aria-hidden", 'true');
+                 deleteButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+
+                 //create play buttton
+
+
+                 var playButton = $("<button type='button'  name=" + videoId + "value='click' margin-bottom='10px' class='btn btn-default btn-sm play-button'>");
+                 var playSpan = $("<span>");
+                 playSpan.addClass('glyphicon glyphicon-play')
+                 playSpan.attr("aria-hidden", 'true');
+
+                 //adding href to span
+
+                 playButton.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+
+                 //create image element
+                 var videoThumb = $("<div class='thumbnail'>");
+
+                 var videoImage = $("<img>");
+
+                 //add class to image
+                 videoImage.addClass('video-image');
+
+                 //set src image
+                 //set data-videoid
+                 videoImage.attr("src", imageUrl);
+                 videoImage.attr("data-videoId", videoId);
+                 videoImage.attr("value", "click");
+                 videoImage.attr("data-href", 'https://www.youtube.com/embed/' + videoId);
+
+                 // videoImage.attr("href", 'https://www.youtube.com/watch?v='+videoId);
+                 //videoImage.append("<a href=https://www.youtube.com/watch?v="+ videoId + " target='video-play'");
+
+
+                 //prepend  video image to videoDiv
+
+                 videoThumb.append(videoImage);
+                 deleteButton.append(addSpan);
+
+                 //playButton.append(playA);
+                 playButton.append(playSpan);
+
+
+                 videoThumb.prepend(deleteButton);
+                 videoThumb.prepend(playButton);
+                 videoThumb.append(p);
+                 favDiv.prepend(videoThumb);
+
+                 //  mouseover display full title
+                 // $( ".thumbnail" )
+                 //      .mouseover(function() {
+                 //    $( this ).find( "p" ).text(videoTitleFull);
+                 //  })
+
+                 $("#favorite-appear-here").prepend(favDiv);
+
+              
+});
+
+
+     $(document).on('click', '.video-image', function(e) {
+         console.log("clicked")
+         e.preventDefault();
+         var href = $(this).attr('data-href');
+         console.log("src: " + href);
+         // maybe use an ID instead
+         $('iframe').attr('src', href);
+     });
+     //remove watch later video click remove button
+  $(document).on('click', '.delete-button', function(e) {
+         console.log("clicked")
+         e.preventDefault();
+         $(this).closest('.col-sm-3').remove();
+        //$(this).attr(".thumbnail").empty();
+      
+
+        });
+</script>
+     </body>
+
+</html>
