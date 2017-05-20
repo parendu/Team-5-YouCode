@@ -124,7 +124,7 @@
                 <div class="tab-content">
                      <!-- =============== Views ============ -->
                      <div class="tab-pane active" id="views">
-                          <div class="row" id="video-appear-here" style="overflow-x: scroll; height: 250px; ">
+                          <div class="row" id="video-appear-here" style="overflow-x: scroll; height: 250px;">
                            <!-- row include 3 videos -->
                           
                            
@@ -139,7 +139,7 @@
                     </div>
                      <!-- ========= /tab views ======= -->
                      <!-- =============== Most likes ============ -->
-                     <div class="tab-pane" id="likes">
+                     <div class="tab-pane" id="likes" style="overflow-x: scroll; height: 250px;">
                         <div class="row">
                            <!-- row include 3 videos -->
                            <div class="col-sm-4">
@@ -220,7 +220,7 @@
                      </div>
                      <!-- =============== / likes============ -->
                      <!-- =============== library (saved)============ -->
-                     <div class="tab-pane " id="library">
+                     <div class="tab-pane " id="library" style="overflow-x: scroll; height: 250px;">
                         <div class="row" id="saved-appear-here">
                            <!-- row include 3 videos -->
                            <!-- ===== first video ====== -->
@@ -235,7 +235,7 @@
                      </div>
                      <!-- ===============/ library (saved)============ -->
                      <!-- =============== watched============ -->
-                     <div class="tab-pane " id="history">
+                     <div class="tab-pane " id="history" style="overflow-x: scroll; height: 250px;">
                         <div class="row">
                            <!-- row include 3 videos -->
                            <!-- ===== first video ====== -->
@@ -324,7 +324,8 @@
                         <div class="col-md-6" id='video-player'>
                             <!-- videos Player will display here -->
                             <div class="player">
-                                <iframe title="YouTube video player" class="youCodeIframes" type="text/html" target="_parent" frameborder="0" style="position: relative; height: 100%; width: 100%;" frameborder="0" allowFullScreen></iframe>
+                                <iframe title="YouTube video player" class="youCodeIframes" type="text/html" target="_parent" frameborder="0" style="position: relative; height: 100%; width: 100%; z-index: 2" frameborder="0" allowFullScreen></iframe>
+                                <img src="assets/images/frame.jpg" style="z-index: 1; position: absolute; top: 10px; left: 15px;">
                             </div>
                         </div>
                         <!-- container -->
