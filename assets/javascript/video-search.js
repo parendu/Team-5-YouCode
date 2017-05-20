@@ -17,6 +17,8 @@
     $("#MoreViewsVideos").on("click",function(){
         loadMoreCount++;
         for (var i = 0+3*loadMoreCount; i < 3+3*loadMoreCount; i++) {
+
+
                  console.log(results[i]);
 
                  //get the data videoId, imageUrl and videoTitle from results
@@ -45,7 +47,7 @@
                  var videoDiv = $("<div class = 'col-sm-4 item'>");
 
                  
-                 var videoThumb = $("<div class='recommendVideos'>");
+                 var videoThumb = $("<div class='recommendVideos' style='margin-bottom:15px;'>");
                  
                  //add videoThumb to videoDiv
                  videoDiv.append(videoThumb);
